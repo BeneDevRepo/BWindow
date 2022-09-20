@@ -1,3 +1,4 @@
+/*
 #include "OpenGLWindow.h" // header
 
 #define SOGL_IMPLEMENTATION_WIN32 // Include actual implementation in this File
@@ -134,7 +135,6 @@ LRESULT OpenGLWindow::WndProc(const UINT msg, const WPARAM wParam, const LPARAM 
 
 
 
-
 // https://gist.github.com/nickrolfe/1127313ed1dbf80254b614a721b3ee9c
 
 // Before we can load extensions, we need a dummy OpenGL context, created using a dummy window.
@@ -212,3 +212,5 @@ static void init_opengl_extensions() {
     ReleaseDC(dummy_window, dummy_dc);
     DestroyWindow(dummy_window);
 }
+
+*/

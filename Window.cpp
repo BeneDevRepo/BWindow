@@ -36,6 +36,7 @@ Window::Window(const int width, const int height, const WindowStyle windowStyle)
 		std::cout << "Creating First Window." << "\n";
 	}
 
+	// PFIBER_START_ROUTINE
 	messageFiber = CreateFiber(0, staticFiberProc, this);
 
 	WNDCLASSW win_class{};

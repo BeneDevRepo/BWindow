@@ -48,7 +48,7 @@ public:
     HWND wnd;
 
 private:
-	static inline void staticFiberProc(void* instance) {
+	static inline void WINAPI staticFiberProc(void* instance) {
 		((Window*)instance)->fiberProc();
 	}
 	void fiberProc();

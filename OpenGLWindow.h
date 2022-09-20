@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 
 #include "Window.h"
 
@@ -20,4 +20,4 @@ public:
 public:
 	inline bool shouldClose() { return win.shouldClose; }
 	inline void pollMsg() { win.pollMsg(); }
-};
+};*/

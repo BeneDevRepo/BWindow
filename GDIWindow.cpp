@@ -4,13 +4,6 @@ static constexpr uint32_t FRAME_INSET = 10;
 static constexpr uint32_t CAPTION_HEIGHT = 30;
 
 GDIWindow::GDIWindow(const int width, const int height):
-			// win(
-			// 	width + FRAME_INSET*2,
-			// 	height + CAPTION_HEIGHT + FRAME_INSET, {
-			// 		.baseStyle = WS_POPUP,
-			// 		.extendedStyle = WS_EX_LAYERED | WS_EX_APPWINDOW
-			// 	}
-			// ),
 			win(
 				width,
 				height, {

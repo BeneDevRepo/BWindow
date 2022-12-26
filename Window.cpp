@@ -52,6 +52,14 @@ Window::Window(const int width, const int height, const WindowStyle windowStyle)
 		exit(-1);
 	}
 
+	// convert client rect size to window size:
+	RECT windowRect;
+	windowRect.left = 0;
+	windowRect.right = width;
+	windowRect.top = 0;
+	windowRect.bottom = height;
+	AdjustWindowRectEx(&windowRect, windowStyle.baseStyle, false, windowStyle.extendedStyle);
+
 	CreateWindowExW(
 		windowStyle.extendedStyle,
 		win_class.lpszClassName, // lpClassName
@@ -59,8 +67,8 @@ Window::Window(const int width, const int height, const WindowStyle windowStyle)
 		windowStyle.baseStyle,
 		100, // x
 		100, // y
-		width, // width
-		height, // height
+		windowRect.right - windowRect.left, // width
+		windowRect.bottom - windowRect.top, // height
 		NULL, // hWndParent
 		NULL, // hMenu
 		NULL, // hInstance
@@ -151,9 +159,20 @@ LRESULT Window::WndProc(const UINT msg, const WPARAM wParam, const LPARAM lParam
 			ReleaseCapture();
 			break;
 
+		case WM_MOUSEWHEEL:
+			scroll += GET_WHEEL_DELTA_WPARAM(wParam);
+			break;
+
 		case WM_MOUSEMOVE:
 			this->mouseX = GET_X_LPARAM(lParam);
 			this->mouseY = GET_Y_LPARAM(lParam);
+			{
+				// correct mouse position for window edges:
+				RECT winRect{};
+				AdjustWindowRectEx(&winRect, windowStyle.baseStyle, false, windowStyle.extendedStyle);
+				this->mouseX -= winRect.left;
+				this->mouseY -= winRect.top;
+			}
 			break;
 
 		case WM_ENTERSIZEMOVE:

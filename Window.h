@@ -43,6 +43,7 @@ private:
 public:
 	uint32_t width, height;
 	int32_t mouseX, mouseY;
+	int32_t scroll; // absolute scroll wheel position
 	bool shouldClose;
 	bool resizable;
     HWND wnd;
